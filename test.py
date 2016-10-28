@@ -13,7 +13,7 @@ size_patch = (15, 15)
 support = image.shape[:2]
 L = 10
 
-number_iteration = 1
+number_iteration = 6
 TD1 = 8
 
 # -------------execution du code--------------------

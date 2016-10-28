@@ -87,7 +87,7 @@ def updateNNFProp(fz, s1, s2, image, size_patch):
 
 
 def calcul_nnf(number_iteration, support, fz, image, size_patch, L, TD1):
-    for turn in xrange(number_iteration):
+    for _ in xrange(number_iteration):
 
         for j in xrange(0, support[1]-1):
             for i in xrange(0, support[0]-1):
