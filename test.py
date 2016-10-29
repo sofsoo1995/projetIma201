@@ -28,6 +28,7 @@ end = time.time()
 
 # affichage du resultat
 print(end-start)
+np.save("NNFphare",fz)
 magn = np.sqrt(fz[:, :, 0]**2 + fz[:, :, 1]**2)
 plt.imshow(magn)
 plt.colorbar()
