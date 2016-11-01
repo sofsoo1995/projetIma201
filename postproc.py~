@@ -1,0 +1,9 @@
+import numpy as np
+import cv2
+import matplotlib.pyplot as plt
+
+
+fz = np.load("./NNFphare.npy")
+
+magn = np.sqrt(fz[:, :, 0]**2 + fz[:, :, 1]**2)
+
