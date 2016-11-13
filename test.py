@@ -8,7 +8,7 @@ import time
 from patchmatch import *
 # -------------phase initialisation-------------------------
 
-image = cv2.imread("TP_C02_007_copy.png", 0)
+image = cv2.imread("inpaintedHouse.png", 0)
 size_patch = (15, 15)
 support = image.shape[:2]
 L = 10
@@ -28,7 +28,7 @@ end = time.time()
 
 # affichage du resultat
 print(end-start)
-np.save("NNFphare", fz)
+np.save("NNFinpaintedHouse", fz)
 magn = np.sqrt(fz[:, :, 0]**2 + fz[:, :, 1]**2)
 plt.imshow(magn)
 plt.colorbar()
