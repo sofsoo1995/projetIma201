@@ -16,6 +16,7 @@ def D(M1, M2):
 
 def init_nnf(support, TD1):
     fz = np.zeros((support[0], support[1], 2))
+    Dz = np.zeros((support[0], support[1], 2))
     
     Mrand = np.zeros((support[0], support[1], 2))
     Mrand1 = np.random.randint(0, support[0], (support[0], support[1]))
@@ -33,7 +34,7 @@ def init_nnf(support, TD1):
             fz[list_i[i], list_j[i]][0] = x - list_i[i]
             fz[list_i[i], list_j[i]][1] = y - list_j[i]
         list_i, list_j = np.where((np.abs(fz[:, :, 0]) < TD1) | (np.abs(fz[:, :, 1]) < TD1))
-    return fz
+    return fz, Dz
         
 
 # -----------algorithme du patchMatch---------------------------------
@@ -65,7 +66,7 @@ def updateNNFRandom(fz, s1, s2, image, size_patch, L, TD1, support):
                 distMin = dist
     end = time.time()
     
-    return fmin
+    return fmin, distMin
 
 
 def updateNNFProp(fz, s1, s2, image, size_patch):
@@ -83,17 +84,18 @@ def updateNNFProp(fz, s1, s2, image, size_patch):
         if(D(M1, M2) < distMin):
             fmin = v
             distMin = D(M1, M2)
-    return fmin
+    return fmin,distMin
 
 
-def calcul_nnf(number_iteration, support, fz, image, size_patch, L, TD1):
+def calcul_nnf(number_iteration, support, fz, Dz, image, size_patch, L, TD1):
     for _ in xrange(number_iteration):
 
         for j in xrange(0, support[1]-1):
             for i in xrange(0, support[0]-1):
-                fz[i, j] = updateNNFProp(fz, i, j, image, size_patch)
-                fz[i, j] = updateNNFRandom(fz, i, j, image, size_patch, L, TD1, support)
-    return fz
+                fz[i, j], Dz[i, j] = updateNNFProp(fz, i, j, image, size_patch)
+                fz[i, j], Dz[i, j] = updateNNFRandom(fz, i, j,
+                                           image, size_patch, L, TD1, support)
+    return fz, Dz
 
 
 
