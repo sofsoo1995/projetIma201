@@ -1,5 +1,5 @@
 import numpy as np
-
+import cv2
 import matplotlib.pyplot as plt
 import time
 
@@ -16,11 +16,15 @@ magn = np.sqrt(fzi**2 + fzj**2)
 print(np.min(fzi))
 print(np.max(fzi))
 # But : obtenir l'histogramme en X et en Y
-a.hist(fzi.ravel(), np.uint(np.max(fzi)), [np.min(fzi), np.max(fzi)])
+hist, bins = np.histogram(fzi.ravel(),
+                          np.max(fzi)-np.min(fzi), [np.min(fzi), np.max(fzi)])
+
+hist2d = np.histogram2d(fzi.ravel()), np.uint(fzj.ravel()),[np.max(fzi),
+                                                                    np.max(fzj)],
+                        
+a.plot(bins[0:len(bins)-1], hist)
 b.hist(fzj.ravel(), np.uint(np.max(fzj)), [np.min(fzj), np.max(fzj)])
 c.hist(magn.ravel(), np.uint(np.max(magn)-np.min(magn)), [np.min(magn),
                                                           np.max(magn)])
-d.hist2d(fzi.ravel(), fzj.ravel(), [np.uint(np.max(fzi)),
-                                    np.uint(np.max(fzj))],
-         [[np.min(fzi), np.max(fzi)], [np.min(fzj), np.max(fzj)]])
+d = plt.imshow(hist2d, interpolation='nearest')
 plt.show()
