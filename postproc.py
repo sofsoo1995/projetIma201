@@ -20,7 +20,8 @@ a.hist(fzi.ravel(), np.uint(np.max(fzi)), [np.min(fzi), np.max(fzi)])
 b.hist(fzj.ravel(), np.uint(np.max(fzj)), [np.min(fzj), np.max(fzj)])
 c.hist(magn.ravel(), np.uint(np.max(magn)-np.min(magn)), [np.min(magn),
                                                           np.max(magn)])
-d.hist2d(fzi.ravel(), fzj.ravel(), [np.uint(np.max(fzi)),
-                                    np.uint(np.max(fzj))],
-         [[np.min(fzi), np.max(fzi)], [np.min(fzj), np.max(fzj)]])
+histp = d.hist2d(fzi.ravel(), fzj.ravel(), [np.uint(np.max(fzi)),
+                                            np.uint(np.max(fzj))],
+                 [[np.min(fzi), np.max(fzi)], [np.min(fzj), np.max(fzj)]])
+
 plt.show()
