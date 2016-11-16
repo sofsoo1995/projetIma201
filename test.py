@@ -8,7 +8,7 @@ import time
 from patchmatch import *
 # -------------phase initialisation-------------------------
 
-image = cv2.imread("ps_elephant.png", 0)
+image = cv2.imread("ps_guat.png", 0)
 size_patch = (15, 15)
 support = image.shape[:2]
 L = 10
@@ -28,7 +28,8 @@ end = time.time()
 
 # affichage du resultat
 print(end-start)
-np.save("NNFelephant", fz)
+np.save("NNFguat", fz)
+np.save("Dguat", fz)
 magn = np.sqrt(fz[:, :, 0]**2 + fz[:, :, 1]**2)
 plt.imshow(magn)
 plt.colorbar()
